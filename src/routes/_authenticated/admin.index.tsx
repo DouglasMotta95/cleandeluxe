@@ -28,12 +28,12 @@ function Dashboard() {
   const upcoming = active.filter((a) => a.appointment_date > today);
 
   const cards = [
-    { label: "📅 Agendamentos de hoje", value: todayList.length },
-    { label: "📆 Próximos agendamentos", value: upcoming.length },
-    { label: "⏳ Pendentes", value: data.filter((a) => a.status === "pending").length },
-    { label: "✅ Confirmados", value: data.filter((a) => a.status === "confirmed").length },
-    { label: "✔️ Concluídos", value: data.filter((a) => a.status === "completed").length },
-    { label: "❌ Cancelados", value: data.filter((a) => a.status === "cancelled").length },
+    { label: "Agendamentos de hoje", value: todayList.length },
+    { label: "Próximos agendamentos", value: upcoming.length },
+    { label: "Pendentes", value: data.filter((a) => a.status === "pending").length },
+    { label: "Confirmados", value: data.filter((a) => a.status === "confirmed").length },
+    { label: "Concluídos", value: data.filter((a) => a.status === "completed").length },
+    { label: "Cancelados", value: data.filter((a) => a.status === "cancelled").length },
   ];
 
   return (
