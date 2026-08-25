@@ -24,9 +24,9 @@ const DESCRIPTION =
   "Agende online o seu serviço de limpeza com a Clean Deluxe: escolha o serviço, a data e um horário disponível em Indaiatuba e região.";
 
 export const Route = createFileRoute("/agendar")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    servico: typeof search["servico"] === "string" ? (search["servico"] as string) : undefined,
-  }),
+  validateSearch: (search: Record<string, unknown>): { servico?: string } =>
+    typeof search["servico"] === "string" ? { servico: search["servico"] as string } : {},
+
   head: () => ({
     meta: [
       { title: TITLE },
@@ -536,10 +536,11 @@ function Field({
   label: string;
   value: string;
   onChange: (v: string) => void;
-  error?: string;
-  type?: string;
-  placeholder?: string;
-  className?: string;
+  error?: string | undefined;
+  type?: string | undefined;
+  placeholder?: string | undefined;
+  className?: string | undefined;
+
 }) {
   return (
     <div className={className}>

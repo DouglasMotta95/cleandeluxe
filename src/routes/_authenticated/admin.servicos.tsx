@@ -88,7 +88,8 @@ function ServicosAdminPage() {
 
   const toggle = useMutation({
     mutationFn: async ({ id, field, value }: { id: string; field: "is_active" | "show_in_booking"; value: boolean }) => {
-      const { error } = await supabase.from("services").update({ [field]: value }).eq("id", id);
+      const patch = field === "is_active" ? { is_active: value } : { show_in_booking: value };
+      const { error } = await supabase.from("services").update(patch).eq("id", id);
       if (error) throw error;
     },
     onSuccess: refresh,
