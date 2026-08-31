@@ -9,6 +9,7 @@ import { Footer } from "@/components/site/Footer";
 import { Header } from "@/components/site/Header";
 import { NUVE, PRODUCTS, money, type NuveProduct } from "@/lib/nuve";
 import "@/nuve-v2.css";
+import "@/nuve-image-fix.css";
 
 type Cart = Record<string, number>;
 const productImages: Record<string, string> = {
