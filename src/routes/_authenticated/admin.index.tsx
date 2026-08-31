@@ -1,89 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { BadgePercent, Boxes, PackageSearch, ShoppingBag } from "lucide-react";
 
-import { Skeleton } from "@/components/ui/skeleton";
-import { fetchAppointments, type Appointment } from "@/lib/admin";
-import { formatDateBR, hhmm, toISODate } from "@/lib/site";
+import { PRODUCTS } from "@/lib/nuve";
 
-export const Route = createFileRoute("/_authenticated/admin/")({
-  component: Dashboard,
-});
+export const Route = createFileRoute("/_authenticated/admin/")({ component: Dashboard });
 
 function Dashboard() {
-  const { data, isLoading } = useQuery({ queryKey: ["appointments"], queryFn: fetchAppointments });
-
-  if (isLoading || !data) {
-    return (
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {[0, 1, 2, 3, 4, 5].map((i) => (
-          <Skeleton key={i} className="h-28 rounded-2xl" />
-        ))}
-      </div>
-    );
-  }
-
-  const today = toISODate(new Date());
-  const active = data.filter((a) => a.status !== "cancelled");
-  const todayList = active.filter((a) => a.appointment_date === today);
-  const upcoming = active.filter((a) => a.appointment_date > today);
-
   const cards = [
-    { label: "Agendamentos de hoje", value: todayList.length },
-    { label: "Próximos agendamentos", value: upcoming.length },
-    { label: "Pendentes", value: data.filter((a) => a.status === "pending").length },
-    { label: "Confirmados", value: data.filter((a) => a.status === "confirmed").length },
-    { label: "Concluídos", value: data.filter((a) => a.status === "completed").length },
-    { label: "Cancelados", value: data.filter((a) => a.status === "cancelled").length },
+    { label: "Produtos cadastrados", value: PRODUCTS.length, icon: PackageSearch, to: "/admin/servicos" as const },
+    { label: "Pedidos reais", value: "—", icon: ShoppingBag, to: "/admin/agendamentos" as const },
+    { label: "Estoque configurado", value: "Pendente", icon: Boxes, to: "/admin/calendario" as const },
+    { label: "Promoção inicial", value: "10% OFF em 2+", icon: BadgePercent, to: "/admin/disponibilidade" as const },
   ];
-
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl">Dashboard</h1>
-        <p className="mt-1 text-sm text-muted-foreground">Visão geral da agenda da Clean Deluxe.</p>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {cards.map((c) => (
-          <div key={c.label} className="rounded-2xl border border-border bg-card p-5">
-            <p className="text-sm text-muted-foreground">{c.label}</p>
-            <p className="mt-2 text-3xl font-semibold">{c.value}</p>
-          </div>
-        ))}
-      </div>
-
-      <Section title="Hoje" list={todayList} empty="Nenhum atendimento para hoje." />
-      <Section title="Próximos atendimentos" list={upcoming.slice(0, 8)} empty="Nenhum atendimento futuro." />
-    </div>
-  );
-}
-
-function Section({ title, list, empty }: { title: string; list: Appointment[]; empty: string }) {
-  return (
-    <div className="rounded-2xl border border-border bg-card">
-      <div className="flex items-center justify-between border-b border-border px-5 py-4">
-        <h2 className="text-lg">{title}</h2>
-        <Link to="/admin/agendamentos" className="text-sm text-primary hover:underline">
-          Ver todos
-        </Link>
-      </div>
-      {list.length === 0 ? (
-        <p className="px-5 py-6 text-sm text-muted-foreground">{empty}</p>
-      ) : (
-        <ul className="divide-y divide-border">
-          {list.map((a) => (
-            <li key={a.id} className="flex flex-wrap items-center gap-x-4 gap-y-1 px-5 py-4 text-sm">
-              <span className="font-medium">{hhmm(a.appointment_time)}</span>
-              <span className="text-muted-foreground">{formatDateBR(a.appointment_date)}</span>
-              <span>{a.customer_name}</span>
-              <span className="text-muted-foreground">{a.service_name}</span>
-              <span className="ml-auto text-xs text-muted-foreground">
-                {a.neighborhood}, {a.city}
-              </span>
-            </li>
-          ))}
-        </ul>
-      )}
+      <div><p className="text-xs font-semibold tracking-[.18em] text-muted-foreground">NUVE ADVANCED SKIN CARE</p><h1 className="mt-2 text-3xl font-display">Dashboard</h1><p className="mt-2 text-sm text-muted-foreground">Visão geral da estrutura comercial da loja. Métricas de vendas só aparecem quando existirem dados reais.</p></div>
+      <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">{cards.map((c) => <Link key={c.label} to={c.to} className="rounded-2xl border border-border bg-card p-5 transition hover:-translate-y-0.5 hover:shadow-sm"><c.icon className="h-5 w-5 text-primary"/><p className="mt-5 text-sm text-muted-foreground">{c.label}</p><p className="mt-2 text-2xl font-semibold">{c.value}</p></Link>)}</div>
+      <div className="grid gap-4 lg:grid-cols-2"><section className="rounded-2xl border border-border bg-card p-6"><h2 className="text-xl font-display">Checklist para ativação</h2><div className="mt-5 space-y-3 text-sm text-muted-foreground"><p>• Definir estoque real por SKU</p><p>• Configurar regras oficiais de frete</p><p>• Inserir credenciais seguras do Mercado Pago no backend</p><p>• Aprovar políticas de troca, envio e atendimento</p><p>• Substituir conteúdos pendentes apenas por informações oficiais</p></div></section><section className="rounded-2xl border border-border bg-card p-6"><h2 className="text-xl font-display">Linha inicial</h2><div className="mt-4 space-y-3">{PRODUCTS.map((p) => <div key={p.id} className="flex items-center justify-between border-b border-border pb-3 text-sm last:border-0"><span>{p.name}</span><span className="text-muted-foreground">R$ 149,90</span></div>)}</div></section></div>
     </div>
   );
 }

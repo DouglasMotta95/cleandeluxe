@@ -1,44 +1,26 @@
 export const SITE = {
-  name: "Clean Deluxe",
-  tagline: "Serviços profissionais de limpeza",
-  region: "Indaiatuba e região",
-  instagramHandle: "@clean_deluxee",
-  instagramUrl: "https://www.instagram.com/clean_deluxee/",
-  whatsappNumber: "+55 19 99302-7922",
-  whatsappDigits: "5519993027922",
+  name: "NUVE Advanced Skin Care",
+  tagline: "Tecnologia japonesa. Ativos selecionados. Skincare para a vida real.",
+  region: "Brasil",
+  instagramHandle: "@nuve_serum",
+  instagramUrl: "https://www.instagram.com/nuve_serum?igsi=MWF0eGxhdmp0MXloMg==",
+  whatsappNumber: "",
+  whatsappDigits: "",
 } as const;
 
 export function whatsappLink(message: string) {
-  return `https://wa.me/${SITE.whatsappDigits}?text=${encodeURIComponent(message)}`;
+  return SITE.whatsappDigits ? `https://wa.me/${SITE.whatsappDigits}?text=${encodeURIComponent(message)}` : "#contato";
 }
 
-export const WA_GENERAL =
-  "Olá! Conheci a Clean Deluxe pelo site e gostaria de solicitar informações sobre os serviços de limpeza.";
-
-export const WA_QUOTE =
-  "Olá! Conheci a Clean Deluxe pelo site e gostaria de solicitar um orçamento de limpeza.";
-
-export const WA_AFTER_BOOKING = "Olá! Acabei de realizar um agendamento pelo site da Clean Deluxe.";
+export const WA_GENERAL = "Olá! Conheci a NUVE pelo site e gostaria de receber mais informações.";
+export const WA_QUOTE = "Olá! Conheci a NUVE pelo site e gostaria de receber informações sobre os produtos.";
+export const WA_AFTER_BOOKING = "Olá! Entrei em contato pelo site da NUVE.";
 
 export function waBookingMessage(service: string, date: string, time: string) {
-  return `Olá! Acabei de solicitar um agendamento pelo site da Clean Deluxe.
-
-Serviço: ${service}
-Data: ${date}
-Horário: ${time}
-
-Gostaria de confirmar as informações.`;
+  return `Olá! Entrei em contato pelo site da NUVE.\n\nAssunto: ${service}\nData: ${date}\nHorário: ${time}`;
 }
 
-export const WEEKDAYS = [
-  "Domingo",
-  "Segunda-feira",
-  "Terça-feira",
-  "Quarta-feira",
-  "Quinta-feira",
-  "Sexta-feira",
-  "Sábado",
-] as const;
+export const WEEKDAYS = ["Domingo", "Segunda-feira", "Terça-feira", "Quarta-feira", "Quinta-feira", "Sexta-feira", "Sábado"] as const;
 
 export function formatDateBR(iso: string) {
   const [y, m, d] = iso.split("-").map(Number);
@@ -53,9 +35,7 @@ export function toISODate(date: Date) {
   return `${y}-${m}-${d}`;
 }
 
-export function hhmm(time: string) {
-  return time.slice(0, 5);
-}
+export function hhmm(time: string) { return time.slice(0, 5); }
 
 export const STATUS_LABEL: Record<string, string> = {
   pending: "Pendente",
