@@ -1,26 +1,21 @@
-# Hello Friend (32)
+# NUVE Advanced Skin Care
 
-Oi
+E-commerce oficial em desenvolvimento para a NUVE Advanced Skin Care.
 
-This project was built with [Lovable](https://lovable.dev).
+## Stack
+- TanStack Start
+- React + TypeScript
+- Tailwind CSS / shadcn-ui
+- Supabase
+- Lovable + GitHub sync
 
-**Live app**: https://cleandeluxe.lovable.app
-
-## Build with Lovable
-
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/98fef9de-2e14-4282-a6ce-2747778aa862).
-
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
-
-## Development
-
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+## Desenvolvimento
+Este repositório está conectado ao projeto Lovable. Commits enviados ao branch `main` sincronizam com o editor.
 
 ```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+npm install
 npm run dev
 ```
+
+## Direção do projeto
+Experiência premium, editorial, mobile-first e orientada a conversão, com foco nos séruns NUVE 5 EM 1, NUVE GHK-Cu e NUVE PDRN + Peptídeo de Cobre.

@@ -1,77 +1,47 @@
-import { Link } from "@tanstack/react-router";
-import { Instagram, MapPin, MessageCircle } from "lucide-react";
+import { Instagram } from "lucide-react";
 
-import { Logo } from "./Logo";
-import { SITE, WA_GENERAL, whatsappLink } from "@/lib/site";
+import { Logo } from "@/components/site/Logo";
+import { NUVE } from "@/lib/nuve";
 
 export function Footer() {
   return (
-    <footer className="mt-24 bg-sidebar text-sidebar-foreground">
-      <div className="cd-container grid gap-10 py-14 md:grid-cols-3">
-        <div>
+    <footer className="nuve-footer">
+      <div className="nuve-container nuve-footer-grid">
+        <div className="nuve-footer-brand">
           <Logo inverted />
-          <p className="mt-4 max-w-xs text-sm text-sidebar-foreground/70">
-            Serviços profissionais de limpeza residencial, comercial e pós-obra.
-          </p>
-          <p className="mt-3 flex items-center gap-2 text-sm text-sidebar-foreground/70">
-            <MapPin className="h-4 w-4 text-sidebar-primary" /> {SITE.region}
-          </p>
+          <p>Skincare inteligente. Tecnologia. Cuidado. Beleza para a vida real.</p>
+          <div className="nuve-social-row">
+            <a href={NUVE.instagram} target="_blank" rel="noreferrer" aria-label="Instagram NUVE"><Instagram size={18} /></a>
+            <a href={NUVE.tiktok} target="_blank" rel="noreferrer" aria-label="TikTok NUVE" className="nuve-tiktok">t</a>
+          </div>
         </div>
 
-        <nav aria-label="Links do rodapé">
-          <h2 className="font-display text-sm tracking-[0.2em] uppercase text-sidebar-primary">Navegação</h2>
-          <ul className="mt-4 space-y-2 text-sm">
-            {[
-              { to: "/servicos", label: "Serviços" },
-              { to: "/sobre", label: "Sobre a Clean Deluxe" },
-              { to: "/galeria", label: "Galeria" },
-              { to: "/agendar", label: "Agendar limpeza" },
-              { to: "/privacidade", label: "Política de Privacidade" },
-              { to: "/termos", label: "Termos de Uso" },
-            ].map((l) => (
-              <li key={l.to}>
-                <Link to={l.to} className="text-sidebar-foreground/75 transition-colors hover:text-sidebar-primary">
-                  {l.label}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
-
         <div>
-          <h2 className="font-display text-sm tracking-[0.2em] uppercase text-sidebar-primary">Contato</h2>
-          <ul className="mt-4 space-y-3 text-sm">
-            <li>
-              <a
-                className="inline-flex items-center gap-2 text-sidebar-foreground/80 hover:text-sidebar-primary"
-                href={whatsappLink(WA_GENERAL)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <MessageCircle className="h-4 w-4" /> {SITE.whatsappNumber}
-              </a>
-            </li>
-            <li>
-              <a
-                className="inline-flex items-center gap-2 text-sidebar-foreground/80 hover:text-sidebar-primary"
-                href={SITE.instagramUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Instagram className="h-4 w-4" /> {SITE.instagramHandle}
-              </a>
-            </li>
-          </ul>
+          <h3>Descubra</h3>
+          <a href="/#produtos">Loja</a>
+          <a href="/#ativos">Ativos & Tecnologia</a>
+          <a href="/#sobre">Sobre a Nuve</a>
+          <a href="/#faq">FAQ</a>
+        </div>
+        <div>
+          <h3>Atendimento</h3>
+          <a href="/#contato">Contato</a>
+          <a href="/privacidade">Privacidade</a>
+          <a href="/termos">Termos de uso</a>
+          <span>Trocas e devoluções — em definição</span>
+        </div>
+        <div>
+          <h3>Newsletter</h3>
+          <p>Receba novidades, lançamentos e conteúdos da NUVE.</p>
+          <form className="nuve-newsletter" onSubmit={(e) => e.preventDefault()}>
+            <input type="email" placeholder="Seu melhor e-mail" aria-label="E-mail" required />
+            <button type="submit">QUERO RECEBER</button>
+          </form>
         </div>
       </div>
-
-      <div className="border-t border-sidebar-border">
-        <div className="cd-container flex flex-col gap-2 py-5 text-xs text-sidebar-foreground/55 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {new Date().getFullYear()} Clean Deluxe. Todos os direitos reservados.</p>
-          <Link to="/auth" className="hover:text-sidebar-primary">
-            Área da proprietária
-          </Link>
-        </div>
+      <div className="nuve-container nuve-footer-bottom">
+        <span>© {new Date().getFullYear()} NUVE Advanced Skin Care.</span>
+        <span>Menos complicação. Mais intenção.</span>
       </div>
     </footer>
   );
