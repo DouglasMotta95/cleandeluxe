@@ -1,8 +1,8 @@
 import { ChevronLeft, ChevronRight, Minus, Plus, ShoppingBag, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-import heroScience from "@/assets/nuve-hero-science.jpg";
-import serum5 from "@/assets/nuve-product-5in1.jpg";
+import heroClient from "@/assets/nuve-hero-client.jpg";
+import serum5Client from "@/assets/nuve-5in1-client.jpg";
 import serumGhk from "@/assets/nuve-product-ghk.jpg";
 import serumPdrn from "@/assets/nuve-product-pdrn.jpg";
 import { Footer } from "@/components/site/Footer";
@@ -13,14 +13,14 @@ import "@/nuve-image-fix.css";
 
 type Cart = Record<string, number>;
 const productImages: Record<string, string> = {
-  "nuve-5-em-1": serum5,
+  "nuve-5-em-1": serum5Client,
   "nuve-ghk-cu": serumGhk,
   "nuve-pdrn": serumPdrn,
 };
 
 const heroSlides = [
-  { image: heroScience, eyebrow: "NUVE ADVANCED SKIN CARE", title: NUVE.headline, text: NUVE.intro, href: "#produtos", cta: "CONHEÇA OS PRODUTOS" },
-  { image: serum5, eyebrow: "NUVE 5 EM 1", title: "Cinco ativos selecionados em uma única fórmula.", text: PRODUCTS[0].description, href: "#nuve-5-em-1", cta: "CONHECER 5 EM 1" },
+  { image: heroClient, eyebrow: "NUVE ADVANCED SKIN CARE", title: "Ciência, inovação e cuidado para realçar a sua melhor versão.", text: NUVE.intro, href: "#produtos", cta: "CONHEÇA NOSSOS PRODUTOS" },
+  { image: serum5Client, eyebrow: "NUVE 5 EM 1", title: "Cinco ativos selecionados em uma única fórmula.", text: PRODUCTS[0].description, href: "#nuve-5-em-1", cta: "CONHECER 5 EM 1" },
   { image: serumGhk, eyebrow: "NUVE GHK-Cu", title: "O poder dos peptídeos em uma fórmula sofisticada.", text: PRODUCTS[1].description, href: "#nuve-ghk-cu", cta: "CONHECER GHK-Cu" },
   { image: serumPdrn, eyebrow: "NUVE PDRN + PEPTÍDEO DE COBRE", title: "Tecnologia avançada para uma rotina de skincare sofisticada.", text: PRODUCTS[2].description, href: "#nuve-pdrn", cta: "CONHECER PDRN" },
 ];
@@ -78,7 +78,7 @@ export function NuveShop() {
 
       <section className="n2-products" id="produtos"><div className="n2-container"><header className="n2-heading"><p className="n2-kicker">A LINHA NUVE</p><h2>Três séruns. Três maneiras de elevar a rotina.</h2><p>Produto em primeiro plano, informação clara e compra simples.</p></header><div className="n2-grid">{PRODUCTS.map(p=><ProductCard key={p.id} product={p} onAdd={add}/>)}</div></div></section>
 
-      <section className="n2-editorial"><div className="n2-container"><div className="n2-editorial-media"><img src={heroScience} alt="NUVE - ciência, inovação e cuidado" loading="lazy"/></div><div className="n2-editorial-copy"><p className="n2-kicker">NOSSO DIFERENCIAL</p><h2>{NUVE.differentiator}</h2><p>{NUVE.differentiatorText}</p><a href="#ativos">CONHEÇA OS ATIVOS</a></div></div></section>
+      <section className="n2-editorial"><div className="n2-container"><div className="n2-editorial-media"><img src={heroClient} alt="NUVE Advanced Skin Care" loading="lazy"/></div><div className="n2-editorial-copy"><p className="n2-kicker">NOSSO DIFERENCIAL</p><h2>{NUVE.differentiator}</h2><p>{NUVE.differentiatorText}</p><a href="#ativos">CONHEÇA OS ATIVOS</a></div></div></section>
 
       {PRODUCTS.map((p,i)=><section className={`n2-product-story n2-${p.accent}`} id={`${p.id}-detalhes`} key={p.id}><div className="n2-container"><div className="n2-story-media"><img src={productImages[p.id]} alt={p.name} loading="lazy"/></div><div className="n2-story-copy"><p className="n2-kicker">0{i+1} · {p.name}</p><h2>{p.eyebrow}</h2><p>{p.description}</p><div className="n2-story-columns"><div><span>ATIVOS</span>{p.actives.map(a=><p key={a}>{a}</p>)}</div><div><span>DESTAQUES</span>{p.benefits.map(b=><p key={b}>{b}</p>)}</div></div><div className="n2-story-buy"><strong>{money(p.price)}</strong><button onClick={()=>add(p)}>ADICIONAR AO CARRINHO</button></div></div></div></section>)}
 
@@ -86,7 +86,7 @@ export function NuveShop() {
 
       <section className="n2-actives" id="ativos"><div className="n2-container"><div><p className="n2-kicker">ATIVOS & TECNOLOGIA</p><h2>Ciência cosmética traduzida em cuidado.</h2><p>Conteúdo técnico apresentado apenas no contexto cosmético, sem promessas terapêuticas.</p></div><div className="n2-active-list"><p><b>Nano Colesterol</b><span>Cuidado e suporte à barreira da pele.</span></p><p><b>Nano Ácido Hialurônico</b><span>Hidratação e aparência mais preenchida e viçosa.</span></p><p><b>Nano Niacinamida</b><span>Barreira, uniformidade e aparência saudável.</span></p><p><b>Resveratrol</b><span>Ação antioxidante e cuidado contra os sinais do envelhecimento.</span></p><p><b>Óleo de Rosa Mosqueta</b><span>Nutrição, conforto e cuidado com a aparência da pele.</span></p></div></div></section>
 
-      <section className="n2-kit"><div className="n2-container"><div><p className="n2-kicker">MONTE SUA ROTINA</p><h2>2 ou mais unidades = 10% OFF.</h2><p>Combine séruns diferentes. O desconto é aplicado automaticamente no carrinho.</p><a href="#produtos">ESCOLHER PRODUTOS</a></div><div className="n2-kit-images"><img src={serum5} alt="NUVE 5 EM 1"/><img src={serumGhk} alt="NUVE GHK-Cu"/></div></div></section>
+      <section className="n2-kit"><div className="n2-container"><div><p className="n2-kicker">MONTE SUA ROTINA</p><h2>2 ou mais unidades = 10% OFF.</h2><p>Combine séruns diferentes. O desconto é aplicado automaticamente no carrinho.</p><a href="#produtos">ESCOLHER PRODUTOS</a></div><div className="n2-kit-images"><img src={serum5Client} alt="NUVE 5 EM 1"/><img src={serumGhk} alt="NUVE GHK-Cu"/></div></div></section>
 
       <section className="n2-about" id="sobre"><div className="n2-container"><p className="n2-kicker">A FILOSOFIA NUVE</p><h2>A beleza de cuidar de si.</h2><p>Menos complicação. Mais intenção.</p><blockquote>Essa é a Nuve. Skincare inteligente. Tecnologia. Cuidado. Beleza para a vida real.</blockquote></div></section>
 
