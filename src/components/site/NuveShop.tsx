@@ -1,10 +1,10 @@
 import { ChevronLeft, ChevronRight, Minus, Plus, ShoppingBag, Sparkles, X } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 
-import heroClient from "@/assets/nuve-hero-client.jpg";
-import serum5Client from "@/assets/nuve-5in1-client.jpg";
 import serumGhk from "@/assets/nuve-product-ghk.jpg";
 import serumPdrn from "@/assets/nuve-product-pdrn.jpg";
+import heroMulheresAsset from "@/assets/nuve-hero-mulheres.jpg.asset.json";
+import serum5Asset from "@/assets/nuve-5in1-branco.jpg.asset.json";
 import kitAsset from "@/assets/nuve-kit-presente.jpg.asset.json";
 import labAsset from "@/assets/nuve-laboratorio.jpg.asset.json";
 import lifestyleAsset from "@/assets/nuve-lifestyle-amigas.jpg.asset.json";
@@ -18,15 +18,15 @@ import "@/nuve-commerce.css";
 
 type Cart = Record<string, number>;
 const productImages: Record<string, string> = {
-  "nuve-5-em-1": serum5Client,
+  "nuve-5-em-1": serum5Asset.url,
   "nuve-ghk-cu": serumGhk,
   "nuve-pdrn": serumPdrn,
 };
 
 const heroSlides = [
   { image: trioAsset.url, eyebrow: "NUVE ADVANCED SKIN CARE", title: "Tecnologia japonesa. Ativos selecionados. Skincare para a vida real.", text: NUVE.intro, href: "#mais-desejados", cta: "CONHEÇA OS PRODUTOS" },
-  { image: heroClient, eyebrow: "A LINHA COMPLETA", title: "Três séruns. Uma rotina com intenção.", text: NUVE.differentiatorText, href: "#produtos", cta: "VER A LINHA" },
-  { image: serum5Client, eyebrow: "NUVE 5 EM 1", title: "Cinco ativos selecionados. Uma rotina prática.", text: PRODUCTS[0]!.description, href: "#nuve-5-em-1", cta: "CONHECER 5 EM 1" },
+  { image: heroMulheresAsset.url, eyebrow: "A LINHA COMPLETA", title: "Três séruns. Uma rotina com intenção.", text: NUVE.differentiatorText, href: "#produtos", cta: "VER A LINHA" },
+  { image: serum5Asset.url, eyebrow: "NUVE 5 EM 1", title: "Cinco ativos selecionados. Uma rotina prática.", text: PRODUCTS[0]!.description, href: "#nuve-5-em-1", cta: "CONHECER 5 EM 1" },
   { image: serumGhk, eyebrow: "NUVE GHK-Cu", title: "O poder dos peptídeos em uma fórmula sofisticada.", text: PRODUCTS[1]!.description, href: "#nuve-ghk-cu", cta: "CONHECER GHK-Cu" },
   { image: serumPdrn, eyebrow: "NUVE PDRN + PEPTÍDEO DE COBRE", title: "Uma combinação inspirada na nova geração do skincare.", text: PRODUCTS[2]!.description, href: "#nuve-pdrn", cta: "CONHECER PDRN" },
 ];
@@ -104,8 +104,8 @@ export function NuveShop() {
       <section className="n2-editorial"><div className="n2-container"><div className="n2-editorial-media"><img src={labAsset.url} alt="Sérum NUVE 5 EM 1 entre vidrarias de laboratório" loading="lazy"/></div><div className="n2-editorial-copy"><p className="n2-kicker">NOSSO DIFERENCIAL</p><h2>{NUVE.differentiator}</h2><p>{NUVE.differentiatorText}</p><a href="#ativos">CONHEÇA OS ATIVOS</a></div></div></section>
 
       <section className="n3-experience" id="monte-seu-kit"><div className="n2-container"><header className="n2-heading"><p className="n2-kicker">CRIE SUA EXPERIÊNCIA NUVE</p><h2>Combine. Descubra. Economize.</h2><p>Escolha dois ou três séruns e transforme a compra em uma rotina NUVE. A condição inicial é 10% OFF a partir de 2 unidades.</p></header><div className="n3-combos">
-        <article><div className="n3-combo-images"><img src={serum5Client} alt="NUVE 5 EM 1"/><img src={serumGhk} alt="NUVE GHK-Cu"/></div><p className="n2-kicker">DUO NUVE</p><h3>Praticidade + peptídeo de cobre</h3><p>5 EM 1 + GHK-Cu</p><div className="n3-combo-price"><s>{money(duoSubtotal)}</s><strong>{money(duoSubtotal*.9)}</strong><span>10% OFF</span></div><button onClick={()=>addCombo([PRODUCTS[0]!.id,PRODUCTS[1]!.id])}>ADICIONAR DUO</button></article>
-        <article className="featured"><div className="n3-combo-images trio"><img src={serumGhk} alt="NUVE GHK-Cu"/><img src={serum5Client} alt="NUVE 5 EM 1"/><img src={serumPdrn} alt="NUVE PDRN"/></div><p className="n2-kicker">TRIO NUVE</p><h3>A experiência completa</h3><p>GHK-Cu + 5 EM 1 + PDRN</p><div className="n3-combo-price"><s>{money(trioSubtotal)}</s><strong>{money(trioSubtotal*.9)}</strong><span>10% OFF</span></div><button onClick={()=>addCombo(PRODUCTS.map(p=>p.id))}>ADICIONAR TRIO</button></article>
+        <article><div className="n3-combo-images"><img src={serum5Asset.url} alt="NUVE 5 EM 1"/><img src={serumGhk} alt="NUVE GHK-Cu"/></div><p className="n2-kicker">DUO NUVE</p><h3>Praticidade + peptídeo de cobre</h3><p>5 EM 1 + GHK-Cu</p><div className="n3-combo-price"><s>{money(duoSubtotal)}</s><strong>{money(duoSubtotal*.9)}</strong><span>10% OFF</span></div><button onClick={()=>addCombo([PRODUCTS[0]!.id,PRODUCTS[1]!.id])}>ADICIONAR DUO</button></article>
+        <article className="featured"><div className="n3-combo-images trio"><img src={serumGhk} alt="NUVE GHK-Cu"/><img src={serum5Asset.url} alt="NUVE 5 EM 1"/><img src={serumPdrn} alt="NUVE PDRN"/></div><p className="n2-kicker">TRIO NUVE</p><h3>A experiência completa</h3><p>GHK-Cu + 5 EM 1 + PDRN</p><div className="n3-combo-price"><s>{money(trioSubtotal)}</s><strong>{money(trioSubtotal*.9)}</strong><span>10% OFF</span></div><button onClick={()=>addCombo(PRODUCTS.map(p=>p.id))}>ADICIONAR TRIO</button></article>
       </div></div></section>
 
       <section className="n2-kit" id="presente"><div className="n2-container"><div><p className="n2-kicker">EXPERIÊNCIA NUVE</p><h2>Uma marca feita para ser vivida.</h2><p>Apresentação cuidadosa, ritual simples e produtos que combinam com a rotina de quem valoriza cuidado e estética.</p><a href="#monte-seu-kit">MONTAR MEU KIT</a></div><div className="n2-kit-images"><img src={kitAsset.url} alt="Caixa NUVE com os séruns 5 EM 1 e GHK-Cu" loading="lazy"/><img src={lifestyleAsset.url} alt="Amigas com os séruns NUVE" loading="lazy"/></div></div></section>
